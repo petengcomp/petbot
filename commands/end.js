@@ -1,14 +1,14 @@
 const pauta = require("../pauta");
+const context = require("../meetingContext")
 
-module.exports = async (message, status, idPauta)=> {
-    if(status){
+module.exports = async (message)=> {
+    if(context.thereIsMeeting){
         const pinned = await message.channel.messages.fetchPinned()
-        pinned.get(idPauta).unpin()
+        pinned.get(context.idPauta).unpin()
         pauta.goTo(0)
         message.channel.send("Reunião finalizada! 😁") 
-        return false
     }else{
         message.channel.send("Não há nenhuma reunião rolando 🤔") 
-        return false
     }
+    context.thereIsMeeting = false
 }

@@ -1,13 +1,15 @@
 const pauta = require("../pauta");
+const context = require("../meetingContext")
+const {MessageEmbed} = require("discord.js")
 
-module.exports = async (message, status, idPauta)=> {
-    if(status){
+module.exports = async (message)=> {
+    if(context.thereIsMeeting){
         const args = message.content.slice(0).split(' ');
         args.shift()
         args.forEach(element => {
             pauta.add(element)
         })
-        const pt = await message.channel.messages.fetch(idPauta)
+        const pt = await message.channel.messages.fetch(context.idPauta)
         const embed = new MessageEmbed()
         .setTitle('Pauta')
         .setColor(0x56938E)
