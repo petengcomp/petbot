@@ -4,6 +4,7 @@ const next = require("../commands/next")
 const back = require("../commands/back")
 const mktopic = require("../commands/mktopic")
 const rmtopic = require("../commands/rmtopic")
+const help = require("../commands/help")
 
 module.exports = async (client, message) => {
     if (message.content.startsWith("!meeting")) {
@@ -23,5 +24,8 @@ module.exports = async (client, message) => {
     }
     if(message.content.startsWith("!rmtopic")){
         rmtopic(message)
+    }
+    if(message.content.startsWith("!help")){
+        help(message)
     }
 }
