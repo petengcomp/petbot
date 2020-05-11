@@ -4,10 +4,10 @@ const {MessageEmbed} = require("discord.js")
 
 module.exports = async (message)=> {
     if(context.thereIsMeeting){
-        const args = message.content.slice(0).split(' ');
-        args.shift()
+        const args = message.content.slice(1).split(',');
+        args[0] = args[0].slice(8)
         args.forEach(element => {
-            pauta.remove(element)
+            pauta.remove(element.trim())
         })
         const pt = await message.channel.messages.fetch(context.idPauta)
         const embed = new MessageEmbed()

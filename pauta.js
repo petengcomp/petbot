@@ -29,7 +29,7 @@ module.exports = {
     },
     remove: function removeTopic(top) {
         this.topics = this.topics.filter((value)=> 
-            (value.localeCompare(top) !== 0)
+            (value.localeCompare(top, undefined, { sensitivity: 'accent' }) !== 0)
         )
     }
 }
