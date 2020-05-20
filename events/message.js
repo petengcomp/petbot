@@ -6,6 +6,8 @@ const mktopic = require("../commands/mktopic")
 const rmtopic = require("../commands/rmtopic")
 const help = require("../commands/help")
 const poll = require("../commands/poll")
+const vote = require("../commands/vote")
+const teste = require("../commands/teste")
 
 module.exports = async (client, message) => {
     if (message.content.startsWith("!meeting")) {
@@ -31,5 +33,11 @@ module.exports = async (client, message) => {
     }
     if(message.content.startsWith("!poll")){
         poll(message)
+    }
+    if(message.content.startsWith("!vote")){
+        vote(message)
+    }
+    if(message.content.startsWith("!t")){
+        teste(message)
     }
 }

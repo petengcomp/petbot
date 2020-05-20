@@ -1,5 +1,5 @@
 const {MessageEmbed} = require("discord.js")
-const DURATION = 5
+const DURATION = 15
 const reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟']
 
 module.exports = async (message)=> {
@@ -19,7 +19,7 @@ module.exports = async (message)=> {
     const fields = []
     for (let i = 0; i < ops.length; i++) {
         fields.push({name: '\u200b', value: `${ops[i].emoji} ${ops[i].option}`})
-    }X
+    }
     message.channel.send("Iniciando regime de votação")
     const poll = await message.channel.send(embed.addFields(fields))
     for(let i=0; i < ops.length; i++){
