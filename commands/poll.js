@@ -4,13 +4,14 @@ const reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣','5️⃣','6️⃣
 
 module.exports = async (message)=> {
     let ops = []
-    const args = message.content.slice(1).split(',');
-    args[0] = args[0].slice(5)
+    let args = message.content.slice(6).split(',');
+    const title = args[0]
+    const numOfOptions = args[1].trim()
     const embed = new MessageEmbed()
-    .setTitle(args[0])
-    .setDescription(`Essa votação durará ${DURATION} segundos. Clique em uma das reações para votar.`)
+    .setTitle(title)
+    .setDescription(numOfOptions > 1 ? `Essa votação durará ${DURATION} segundos. Clique em uma das reações para votar. Somente **${numOfOptions}** opções serão contabilizadas` : `Essa votação durará ${DURATION} segundos. Clique em uma das reações para votar. Somente **${numOfOptions}** opção será contabilizada`)
     .setColor(0xFFA17A)
-    args.shift()
+    args = args.slice(2)
     let i = 0
     args.forEach(elem => {
         ops.push({emoji: reactions[i], option: elem.trim()})
@@ -25,9 +26,16 @@ module.exports = async (message)=> {
     for(let i=0; i < ops.length; i++){
         await poll.react(reactions[i])
     }
+
     const filter = (reaction, user) => {
-        return reactions.includes(reaction.emoji.name) && !user.bot
+        if (!user.bot) {
+            let occur = poll.reactions.cache.filter((elem) => elem.users.cache.has(user.id)).size
+            return occur <= numOfOptions && reactions.includes(reaction.emoji.name)
+        } else {
+            return false
+        }
     }
+
     poll.awaitReactions(filter, {time: DURATION * 1000})
         .then(collected => {
             ops.forEach((elem) => {

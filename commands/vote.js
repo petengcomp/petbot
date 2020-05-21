@@ -7,22 +7,29 @@ module.exports = async (message) => {
         {emoji: '👎', count: 0},
         {emoji: '🤷‍♀️', count: 0}
     ]
+    message.channel.send("Iniciando regime de votação")
     const title = message.content.slice(6);
     const embed = new MessageEmbed()
     .setTitle(title)
-    .setDescription(`Essa votação durará ${DURATION} segundos. Clique ${reactions[0].emoji} para sim, ${reactions[1].emoji} para não e ${reactions[2].emoji} para se abster.`)
+    .setDescription(`Essa votação durará ${DURATION} segundos. Clique ${reactions[0].emoji} para sim, ${reactions[1].emoji} para não e ${reactions[2].emoji} para se abster. Apenas a **primeira** reação será contabilizada.`)
     .setColor(0xD17FDC)
     const vote = await message.channel.send(embed)
 
-    message.channel.send("Iniciando regime de votação")
+    
     
     reactions.forEach( async (elem) => 
         await vote.react(elem.emoji)
     )
 
     const filter = (reaction, user) => {
-        return reactions.some((elem) => elem.emoji == reaction.emoji.name ) && !user.bot
+        if (!user.bot) {
+            let occur = vote.reactions.cache.filter((elem) => elem.users.cache.has(user.id)).size
+            return occur == 1 && reactions.some((elem) => elem.emoji == reaction.emoji.name)
+        } else {
+            return false
+        }
     }
+
 
     vote.awaitReactions(filter, {time: DURATION * 1000})
         .then(collected => {
