@@ -22,11 +22,11 @@ module.exports = async (message) => {
     message.reply("você precisa estar em um canal de voz para começar uma reunião.")
     return
   }
-  message.channel.send("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
   pauta.goTo(0)
   const embed = new MessageEmbed()
     .setTitle('Pauta')
     .setColor(0x56938E)
+    .setDescription("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
     .addFields({ name: '\u200b', value: pauta.topics })
   const msg = await message.channel.send(embed)
   try {

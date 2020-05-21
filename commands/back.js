@@ -12,6 +12,7 @@ module.exports = async (message)=> {
             const embed = new MessageEmbed()
             .setTitle('Pauta')
             .setColor(0x56938E)
+            .setDescription("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
             .addFields({ name: '\u200b', value: pauta.topics })
             pt.edit(embed)
         }
