@@ -37,7 +37,7 @@ module.exports = async (client, message) => {
     if(message.content.startsWith("!vote")){
         vote(message)
     }
-    if(message.content.startsWith("!t")){
+    if(message.content.startsWith("!teste")){
         teste(message)
     }
 }
