@@ -1,5 +1,5 @@
 const {MessageEmbed} = require("discord.js")
-const DURATION = 5
+const DURATION = 15
 
 module.exports = async (message) => {
     const reactions = [

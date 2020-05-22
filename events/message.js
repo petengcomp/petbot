@@ -38,6 +38,6 @@ module.exports = async (client, message) => {
         vote(message)
     }
     if(message.content.startsWith("!teste")){
-        teste(message)
+        teste(client, message)
     }
 }

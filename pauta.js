@@ -5,13 +5,13 @@ module.exports = {
     "Introcomp",
     "Interpet",
     "Mobiliza",
-    "Topcom",
     "Web",
     "Mobile",
     "Eletropet",
     "JACEE",
     "Pesquisa",
-    "PET Talk"],
+    "PET Talk",
+    "Divulgação Científica"],
     goTo : function goTo(index){
         for(var i = 0; i < this.topics.length; i++){
             let str = this.topics[i]
