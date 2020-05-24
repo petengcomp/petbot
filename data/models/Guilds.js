@@ -4,9 +4,14 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			primaryKey: true,
         },
-        topics: {
-            type: DataTypes.ARRAY(DataTypes.STRING)
-        }
+		meeting: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false
+		},
+		voteTime: {
+			type:  DataTypes.INTEGER,
+			defaultValue: 15
+		}
 	}, {
 		timestamps: false,
 	});

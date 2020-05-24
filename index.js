@@ -3,9 +3,8 @@ const Discord = require("discord.js")
 const fs = require("fs")
 const client = new Discord.Client()
 
-client.once('ready', (client) => {
-  console.log(`Logged in as ${client.user.tag}!`)
-
+client.once('ready', () => {
+  console.log(`Logged in!`)
 })
 
 fs.readdir("./events/", (err, files) => {

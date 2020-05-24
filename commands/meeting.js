@@ -1,6 +1,7 @@
 const pauta = require("../pauta");
 const context = require("../meetingContext")
 const { MessageEmbed } = require("discord.js")
+const {Guilds} = require('../data/dbObjects')
 
 module.exports = async (message) => {
   const voiceStatus = message.guild.voiceStates.cache.get(message.author.id)

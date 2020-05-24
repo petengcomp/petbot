@@ -1,4 +1,15 @@
-module.exports = (client, guild) => {
-    const allChannels = guild.channels.cache
-    allChannels.find((elem)=>elem.type == 'text').send("Oi")
+const {Guilds} = require('../data/dbObjects')
+
+module.exports = async (client, guild) => {
+    try {
+        await Guilds.create({
+            guild_id: guild.id
+        })
+    }
+    catch (e) {
+        if (e.name === 'SequelizeUniqueConstraintError') {
+            return console.log('Voltei 😁')
+        }
+        return console.log('Algo deu errado 😕 '+ e)
+    }
 }
