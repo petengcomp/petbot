@@ -9,7 +9,7 @@ const poll = require("../commands/poll")
 const vote = require("../commands/vote")
 const teste = require("../commands/teste")
 
-module.exports = async (client, message, guild) => {
+module.exports = async (client, message) => {
     if (message.content.startsWith("!meeting")) {
         meeting(message)
     }

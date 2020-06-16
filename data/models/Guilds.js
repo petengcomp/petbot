@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
 		voteTime: {
 			type:  DataTypes.INTEGER,
 			defaultValue: 15
+		},
+		idPauta : DataTypes.STRING,
+		topics : DataTypes.TEXT,
+		doneTopics : {
+			type:  DataTypes.INTEGER,
+			defaultValue: 0
 		}
 	}, {
 		timestamps: false,

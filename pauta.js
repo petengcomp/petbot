@@ -23,13 +23,22 @@ module.exports = {
             this.topics[i] = "~~" + this.topics[i] + "~~"
         }
         this.topics[index] = "**" + this.topics[index] + "**"
-    },
-    add: function addTopic(top){
-        this.topics.push(top)
-    },
-    remove: function removeTopic(top) {
-        this.topics = this.topics.filter((value)=> 
-            (value.localeCompare(top, undefined, { sensitivity: 'accent' }) !== 0)
-        )
+    } 
+}
+
+module.exports.remove = (arr, top) => {
+    return (arr.filter((elem) => (elem.localeCompare(top, undefined, { sensitivity: 'accent' }) !== 0)))
+}
+
+module.exports.add = (outArr, outTop) => {
+
+    function isTheSame(read, searched) {
+        return (read.localeCompare(searched, undefined, { sensitivity: 'accent' }) === 0)
     }
+
+    function thereIsNot(arr, top) {
+        return ((arr.findIndex((topic) => isTheSame(top, topic)) === -1 ) ? true : false)
+    }
+
+    return thereIsNot(outArr, outTop) ? outArr.concat(outTop) : outArr
 }

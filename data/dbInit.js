@@ -8,11 +8,10 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 })
 
 sequelize.import('./models/Guilds')
-sequelize.import('./models/Topics')
 
 const force = process.argv.includes('--force') || process.argv.includes('-f')
 
 sequelize.sync({ force }).then(async () => {
-	console.log('Database synced')
+	console.log('Banco de dados syncado')
 	sequelize.close()
 }).catch(console.error)
