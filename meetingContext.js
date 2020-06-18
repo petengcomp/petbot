@@ -1,5 +1,5 @@
 module.exports = {
     thereIsMeeting : false,
-    idPauta : null,
-    doneTopics : 0
+    topics_message_id : null,
+    done_topics : 0
 }

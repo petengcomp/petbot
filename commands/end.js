@@ -1,15 +1,13 @@
-const pauta = require("../pauta")
 const Guilds = require('../data/dbObjects')
 
-module.exports = async (message)=> {
+module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
         if (guild.meeting) {
             const pinned = await message.channel.messages.fetchPinned()
-            pinned.get(guild.idPauta).unpin()
-            pauta.goTo(0)
-            message.channel.send("Reunião finalizada! 😁")
-            await guild.update({ meeting: false, idPauta: null })
+            await pinned.get(guild.topics_message_id).unpin()
+            await guild.update({ meeting: false, topics_message_id: null, done_topics: 0,  sent_since_meeting_start: 0 })
+            await message.channel.send("Reunião finalizada! 😁")
         } else {
             message.channel.send("Não há nenhuma reunião rolando 🤔") 
         }

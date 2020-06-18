@@ -1,20 +1,7 @@
-module.exports = {
-    topics : [
-    "Resumos",
-    "Adm",
-    "Introcomp",
-    "Interpet",
-    "Mobiliza",
-    "Web",
-    "Mobile",
-    "Eletropet",
-    "JACEE",
-    "Pesquisa",
-    "PET Talk",
-    "Divulgação Científica"]
-}
-
 module.exports.goTo = (arr, index) => {
+    if(arr === null || arr.length === 0 ){
+        return arr
+    }
     for (var i = 0; i < arr.length; i++) {
         let str = arr[i]
         if(str.indexOf("**") == 0 || str.indexOf("~~") == 0){

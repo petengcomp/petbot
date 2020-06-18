@@ -4,7 +4,7 @@ const Guilds = require('../data/dbObjects')
 module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
-        const DURATION = guild.voteTime
+        const DURATION = guild.vote_time
         const reactions = [
             { emoji: '👍', count: 0 },
             { emoji: '👎', count: 0 },

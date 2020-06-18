@@ -6,7 +6,7 @@ const reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️�
 module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
-        const DURATION = guild.voteTime
+        const DURATION = guild.vote_time
         let ops = []
         let args = message.content.slice(6).split(',');
         const title = args[0]

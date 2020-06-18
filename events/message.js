@@ -7,10 +7,13 @@ const rmtopic = require("../commands/rmtopic")
 const help = require("../commands/help")
 const poll = require("../commands/poll")
 const vote = require("../commands/vote")
-const maxtime = require("../commands/maxtime")
 const teste = require("../commands/teste")
+const settings = require("../commands/settings")
+const countSentMessages = require("../utils/countMessages")
 
 module.exports = async (client, message) => {
+    countSentMessages(message)
+
     if (message.content.startsWith("!meeting")) {
         meeting(message)
     }
@@ -38,10 +41,10 @@ module.exports = async (client, message) => {
     if(message.content.startsWith("!vote")){
         vote(message)
     }
-    if(message.content.startsWith("!maxtime")){
-        maxtime(message)
+    if(message.content.startsWith("!settings")){
+        settings(message)
     }
     if(message.content.startsWith("!teste")){
-        teste(client, message)
+        teste(message)
     }
 }
