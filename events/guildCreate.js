@@ -1,4 +1,4 @@
-const {Guilds} = require('../data/dbObjects')
+const Guilds = require('../data/dbObjects')
 
 module.exports = async (client, guild) => {
     try {

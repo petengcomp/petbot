@@ -11,19 +11,21 @@ module.exports = {
     "JACEE",
     "Pesquisa",
     "PET Talk",
-    "Divulgação Científica"],
-    goTo : function goTo(index){
-        for(var i = 0; i < this.topics.length; i++){
-            let str = this.topics[i]
-            if(str.indexOf("**") == 0 || str.indexOf("~~") == 0){
-                this.topics[i] = str.slice(2, (str.length-2))
-            }
+    "Divulgação Científica"]
+}
+
+module.exports.goTo = (arr, index) => {
+    for (var i = 0; i < arr.length; i++) {
+        let str = arr[i]
+        if(str.indexOf("**") == 0 || str.indexOf("~~") == 0){
+            arr[i] = str.slice(2, (str.length-2))
         }
-        for(var i = 0; i < index; i++){
-            this.topics[i] = "~~" + this.topics[i] + "~~"
-        }
-        this.topics[index] = "**" + this.topics[index] + "**"
-    } 
+    }
+    for(var i = 0; i < index; i++){
+        arr[i] = "~~" + arr[i] + "~~"
+    }
+    arr[index] = "**" + arr[index] + "**"
+    return arr
 }
 
 module.exports.remove = (arr, top) => {
@@ -31,7 +33,7 @@ module.exports.remove = (arr, top) => {
 }
 
 module.exports.add = (outArr, outTop) => {
-
+    
     function isTheSame(read, searched) {
         return (read.localeCompare(searched, undefined, { sensitivity: 'accent' }) === 0)
     }
