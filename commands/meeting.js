@@ -5,6 +5,7 @@ const end = require("../commands/end")
 
 module.exports = async (message) => {
   let guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
+  const requestedRole = message.content.slice(8).trim()
   if (guild) {
     if(guild.meeting){
       message.channel.send('Finalizando a reunião em aberto')
@@ -14,16 +15,22 @@ module.exports = async (message) => {
     const voiceStatus = message.guild.voiceStates.cache.get(message.author.id)
     if (voiceStatus != undefined && voiceStatus.channelID != null) {
       message.channel.send("Começando a reunião.")
-      const allMembers = message.guild.members.cache
-      const presentMembers = message.guild.voiceStates.cache
-      const missing = allMembers.difference(presentMembers)
-      missing.sweep((elem) => elem.user.bot)
-      if (missing.size > 0) {
-        let msg = `Ainda faltam: `
-        missing.forEach((elem) => msg += `<@${elem.user.id}> `)
-        message.channel.send(msg)
-      } else {
-        message.channel.send("Todos estão presentes.")
+      if(requestedRole.length > 0){
+        const shouldParticipate = message.guild.members.cache
+        .filter((member) => member.roles.cache.some((thisRole) => thisRole.name === requestedRole))
+        if(shouldParticipate.size === 0){
+          return message.channel.send(`Não há ninguém com o cargo ${requestedRole} aqui.`)
+        }
+        const presentMembers = message.guild.voiceStates.cache
+        const missing = shouldParticipate.difference(presentMembers)
+        missing.sweep((elem) => elem.user.bot)
+        if (missing.size > 0) {
+          let msg = `Ainda faltam: `
+          missing.forEach((elem) => msg += `<@${elem.user.id}> `)
+          message.channel.send(msg)
+        } else {
+          message.channel.send("Todos estão presentes.")
+        }
       }
     } else {
       return message.reply("você precisa estar em um canal de voz para começar uma reunião.")

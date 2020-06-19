@@ -1,6 +1,7 @@
 const Guilds = require('../data/dbObjects')
 const maxtime = require("../utils/maxtime")
 const maxmsg = require("../utils/maxmsg")
+const meetrole = require("../utils/meetrole")
 
 module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
