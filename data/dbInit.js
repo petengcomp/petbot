@@ -5,9 +5,10 @@ let sequelize
 if (process.env.DATABASE_URL) {
 	sequelize = new Sequelize(process.env.DATABASE_URL, {
 		dialect: 'postgres',
-		protocol: 'postgres',
-		native: true
-	})
+		dialectOptions: {
+		  ssl: true
+		}
+	  })
 } else {
 	sequelize = new Sequelize('database', 'username', 'password', {
 		host: 'localhost',
