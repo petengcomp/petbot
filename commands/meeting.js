@@ -22,8 +22,13 @@ module.exports = async (message) => {
           return message.channel.send(`Não há ninguém com o cargo ${requestedRole} aqui.`)
         }
         const presentMembers = message.guild.voiceStates.cache
-        const missing = shouldParticipate.difference(presentMembers)
-        missing.sweep((elem) => elem.user.bot)
+        const missing = shouldParticipate.intersect(presentMembers).difference(shouldParticipate)
+        try{
+          missing.sweep((elem) => elem.user.bot)
+        }catch(e){
+          console.log(e)
+        }
+        
         if (missing.size > 0) {
           let msg = `Ainda faltam: `
           missing.forEach((elem) => msg += `<@${elem.user.id}> `)
