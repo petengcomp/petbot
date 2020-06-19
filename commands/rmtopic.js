@@ -33,9 +33,9 @@ module.exports = async (message) => {
 
                 const pt = await message.channel.messages.fetch(guild.topics_message_id)
                 const embed = new MessageEmbed()
-                    .setTitle('Pauta')
-                    .setColor(0x56938E)
-                    .setDescription("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
+                    .setTitle(pt.embeds[0].title)
+                    .setColor(pt.embeds[0].color.toString(16))
+                    .setDescription(pt.embeds[0].description)
                     .addFields(oldTopics !== null && oldTopics.length > 0 ? { name: '\u200b', value: oldTopics } : { name: '\u200b', value: "Não há nenhum tópico. Digite `!help` para saber como adicioná-los" })
                 pt.edit(embed)
             } else {

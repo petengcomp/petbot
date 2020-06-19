@@ -14,9 +14,9 @@ module.exports = async (message) => {
                 let done_topics = guild.done_topics
                 topics = goTo(topics, ++done_topics)
                 const embed = new MessageEmbed()
-                    .setTitle('Pauta')
-                    .setDescription("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
-                    .setColor(0x56938E)
+                    .setTitle(pt.embeds[0].title)
+                    .setColor(pt.embeds[0].color.toString(16))
+                    .setDescription(pt.embeds[0].description)
                     .addFields({ name: '\u200b', value: topics })
                 pt.edit(embed)
                 await guild.increment('done_topics')
