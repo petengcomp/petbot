@@ -1,7 +1,10 @@
 {
   "name": "babybot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Um bot para reunioes no discord",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
