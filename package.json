@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Um bot para reunioes no discord",
   "engines": {
-    "node": "12.x"
+    "node": "12.16.x"
   },
   "main": "index.js",
   "scripts": {
