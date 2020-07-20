@@ -1,10 +1,14 @@
 require("dotenv").config()
 const Discord = require("discord.js")
 const fs = require("fs")
+const cron = require('cron')
 const client = new Discord.Client()
+const bdayTask = require('./utils/bdayTask')
 
-client.once('ready', () => {
+client.on('ready', () => {
     console.log(`Logged in!`)
+    client.task = new cron.CronJob('0 8 */1 * *', () => bdayTask(client))
+    client.task.start()
 })
 
 fs.readdir("./events/", (err, files) => {

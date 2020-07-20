@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         topics_message_id: DataTypes.STRING,
         topics: DataTypes.TEXT,
         referrals: DataTypes.TEXT,
+        birthdays: DataTypes.TEXT,
         done_topics: {
             type: DataTypes.INTEGER,
             defaultValue: 0

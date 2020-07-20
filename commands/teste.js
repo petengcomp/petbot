@@ -1,11 +1,8 @@
 const Guilds = require('../data/dbObjects')
+const moment = require('moment')
+const Discord = require("discord.js")
+const bdayTask = require('../utils/bdayTask')
 
-module.exports = async (message) => {
-    //message.reply("nada sendo testado. E você não deveria estar usando esse comando.")
-    const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
-    if (guild) {
-        message.channel.send(JSON.parse(guild.referrals))
-    } else {
-        return message.channel.send('Esse servidor não está no banco. Algo de errado não está certo.')
-    }
+module.exports = async (client, message) => {
+    message.reply("nada sendo testado. E você não deveria estar usando esse comando.")
 }

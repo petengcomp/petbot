@@ -10,7 +10,10 @@ const vote = require("../commands/vote")
 const teste = require("../commands/teste")
 const settings = require("../commands/settings")
 const reminder = require("../commands/reminder")
+const bday = require("../commands/bday")
 const countSentMessages = require("../utils/countMessages")
+
+const Guilds = require('../data/dbObjects')
 
 module.exports = async (client, message) => {
     countSentMessages(message)
@@ -37,7 +40,9 @@ module.exports = async (client, message) => {
         settings(message)
     } else if (message.content.startsWith("!reminder")) {
         reminder(message)
+    } else if (message.content.startsWith("!bday")) {
+        bday(message)
     } else if (message.content.startsWith("!teste")) {
-        teste(message)
+        teste(client, message)
     }
 }
