@@ -9,6 +9,7 @@ const poll = require("../commands/poll")
 const vote = require("../commands/vote")
 const teste = require("../commands/teste")
 const settings = require("../commands/settings")
+const reminder = require("../commands/reminder")
 const countSentMessages = require("../utils/countMessages")
 
 module.exports = async (client, message) => {
@@ -16,35 +17,27 @@ module.exports = async (client, message) => {
 
     if (message.content.startsWith("!meeting")) {
         meeting(message)
-    }
-    if (message.content.startsWith("!end")) {
+    } else if (message.content.startsWith("!end")) {
         end(message)
-    }
-    if(message.content.startsWith("!next")){
+    } else if (message.content.startsWith("!next")) {
         next(message)
-    }
-    if(message.content.startsWith("!back")){
+    } else if (message.content.startsWith("!back")) {
         back(message)
-    }
-    if(message.content.startsWith("!mktopic")){
+    } else if (message.content.startsWith("!mktopic")) {
         mktopic(message)
-    }
-    if(message.content.startsWith("!rmtopic")){
+    } else if (message.content.startsWith("!rmtopic")) {
         rmtopic(message)
-    }
-    if(message.content.startsWith("!help")){
+    } else if (message.content.startsWith("!help")) {
         help(message)
-    }
-    if(message.content.startsWith("!poll")){
+    } else if (message.content.startsWith("!poll")) {
         poll(message)
-    }
-    if(message.content.startsWith("!vote")){
-        vote(message)
-    }
-    if(message.content.startsWith("!settings")){
+    } else if (message.content.startsWith("!vote")) {
+        vote(client, message)
+    } else if (message.content.startsWith("!settings")) {
         settings(message)
-    }
-    if(message.content.startsWith("!teste")){
+    } else if (message.content.startsWith("!reminder")) {
+        reminder(message)
+    } else if (message.content.startsWith("!teste")) {
         teste(message)
     }
 }

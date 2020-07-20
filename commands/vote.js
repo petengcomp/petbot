@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js")
 const Guilds = require('../data/dbObjects')
 
-module.exports = async (message) => {
+module.exports = async (client, message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
         const DURATION = guild.vote_time
