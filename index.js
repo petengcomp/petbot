@@ -7,7 +7,7 @@ const bdayTask = require('./utils/bdayTask')
 
 client.on('ready', () => {
     console.log(`Logged in!`)
-    client.task = new cron.CronJob('0 8 */1 * *', () => bdayTask(client))
+    client.task = new cron.CronJob('0 11 */1 * *', () => bdayTask(client))
     client.task.start()
 })
 
