@@ -11,6 +11,8 @@ module.exports = async (message) => {
         })
         const stringifiedRefferals = JSON.stringify(referrals.join('\n'))
         await guild.update({ referrals: stringifiedRefferals })
+        message.author.send('Encaminhamentos salvos!')
+        message.author.send(referrals.join('\n'))
 
     } else {
         return message.channel.send('Esse servidor não está no banco. Algo de errado não está certo.')
