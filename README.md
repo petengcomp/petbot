@@ -40,7 +40,9 @@ Não utilize este código como referência para o desenvolvimento de um bot para
 ```!mksubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>,...``` - Adiciona os subtópicos  no tópico especificado da pauta (case sensitive). 
 ```!rmtopic <topico 1>, <topico 2>, ...``` - Remove os tópicos citados da pauta.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` - Remove todos os pontos, esvaziando a pauta. 
-```!rmsubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>, ...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>, ...``` - Remove os subtópicos no tópico especificado da pauta (case insensitive). Digite !rmsubtopic <topico 1>, *; <topico 2>, * para remover todos subtópicos de determinado tópico. Digite !rmtopic * para remover todos
+```!rmsubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>, ...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>, ...``` - Remove os subtópicos no tópico especificado da pauta (case insensitive).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmsubtopic <topico 1>, *; <topico 2>, * ``` - Remove todos subtópicos de determinado tópico. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` Remove todos os subtópicos, deixando os tópicos vazios.
 
 ## :zap: Uso do código
 **ATENÇÃO:** Este projeto não pode ser executado localmente, por enquanto. Há variáveis de ambiente no arquivo .env necessárias para seu funcionamento correto e que não devem ser adicionadas ao git. Com a formalização do ambiente de execução do bot e criação de contas adequadas, elas ficarão disponíveis.
