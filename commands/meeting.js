@@ -17,7 +17,7 @@ module.exports = async (message) => {
             message.channel.send("Começando a reunião.")
             if (requestedRole.length > 0) {
                 const shouldParticipate = message.guild.members.cache
-                    .filter((member) => member.roles.cache.some((thisRole) => thisRole.name === requestedRole))
+                    .filter((member) => member.roles.cache.some((thisRole) => thisRole.name.toLowerCase() === requestedRole.toLowerCase()))
                 if (shouldParticipate.size === 0) {
                     return message.channel.send(`Não há ninguém com o cargo ${requestedRole} aqui.`)
                 }
@@ -40,13 +40,20 @@ module.exports = async (message) => {
         } else {
             return message.reply("você precisa estar em um canal de voz para começar uma reunião.")
         }
-        let topics = JSON.parse(guild.topics)
+        let oldTopics = JSON.parse(guild.topics)
+        let topics = []
+        oldTopics.map( topic => {
+            topics.push(topic.name)
+            topic.subtopics.map(subtopic => {
+                topics.push(` \u00A0\u00A0\u00A0\u00A0 ${subtopic}`)
+            }) 
+        } )
         topics = goTo(topics, 0)
         const embed = new MessageEmbed()
             .setTitle('Pauta')
             .setColor(0x56938E)
             .setDescription("Aperte '🔽' para passar o tópico ou '🔼' para voltar. Ao final da reunião, aperte '❌' para finalizá-la 😉")
-            .addFields(topics !== null && topics.length > 0 ? { name: '\u200b', value: topics } : { name: '\u200b', value: "Não há nenhum tópico. Digite `!help` para saber como adicioná-los" })
+            .addFields(topics !== null && topics.length > 0 ? { name: '\u200b', value: topics} : { name: '\u200b', value: "Não há nenhum tópico. Digite `!help` para saber como adicioná-los" })
         const msg = await message.channel.send(embed)
 
         await guild.update({ meeting: true, topics_message_id: msg.id })
@@ -54,8 +61,9 @@ module.exports = async (message) => {
         await msg.react('🔼')
         await msg.react('❌')
         await msg.pin()
-
-        message.channel.send('**Encaminhamentos salvos**\n' + JSON.parse(guild.referrals))
+        if(guild.referrals !== null){
+            message.channel.send('**Encaminhamentos salvos**\n' + JSON.parse(guild.referrals))
+        }
 
     } else {
         return message.channel.send('Esse servidor não está no banco. Algo de errado não está certo.')

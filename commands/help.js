@@ -4,7 +4,9 @@ module.exports = async (message) => {
         "`!meeting` - Inicia a reunião.\n" +
         "\t`!meeting <nome de um cargo>` - Inicia a reunião, verificando se todos com o cargo estão no canal de voz. O cargo não pode conter espaços.\n" +
         "`!mktopic <topico 1>, <topico 2>, ...` - Adiciona os tópicos na pauta.\n" +
+        "`!mksubtopic <topico 1>, <subtopico 1>, <subtopico 1>, <subtopico 2> ...; <topico 2>, <subtopico 3>, <subtopico 4>, ...` - Adiciona os subtópicos no tópico especificado da pauta.\n" +
         "`!rmtopic <topico 1>, <topico 2>, ...` - Remove os tópicos da pauta (case insensitive). Digite `!rmtopic *` para remover todos\n" +
+        "`!rmsubtopic <topico 1>, <subtopico 1>, <subtópico2>, ...; <topico 2>, <subtopico 3>, <subtopico 4>, ...` - Remove os subtópicos no tópico especificado da pauta (case insensitive). Digite `!rmsubtopic <topico 1>, *; <topico 2>, *` para remover todos subtópicos de determinado tópico. Digite `!rmtopic *` para remover todos\n" +
         "`!reminder <encaminhamento1> ; <encaminhamento2> ; ...` - Adiciona encaminhamentos para serem verificados na próxima reunião. Lembre-se de separá-los usado ponto-e-vírugla \n" + "`!bday <DD/MM/AAAA>` - Salva sua data de aniversário.\n" +
         "`!vote <título>` - Faz uma votação com Sim, Não e Abstenção.\n" +
         "`!poll <título>, <número de votos por pessoa>, <opção 1>, <opção 2>, ...` - Faz uma votação com até 10 opções.\n" +

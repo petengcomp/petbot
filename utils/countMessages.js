@@ -3,7 +3,6 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = async (message) => {
     if (message.channel.type === 'dm') return
-
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
         if (guild.meeting) {
@@ -23,6 +22,9 @@ module.exports = async (message) => {
                 await msg.react('🔼')
                 await msg.react('❌')
                 await msg.pin()
+                if(guild.referrals!== null){
+                    message.channel.send('**Encaminhamentos salvos**\n' + JSON.parse(guild.referrals))
+                }
             } else if (!message.author.bot) {
                 await guild.increment('sent_since_meeting_start')
             }

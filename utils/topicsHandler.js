@@ -16,10 +16,27 @@ module.exports.goTo = (arr, index) => {
 }
 
 module.exports.remove = (arr, top) => {
+    return (arr.filter((elem) => (elem.name.localeCompare(top, undefined, { sensitivity: 'accent' }) !== 0)))
+}
+
+module.exports.removest = (arr, top) => {
     return (arr.filter((elem) => (elem.localeCompare(top, undefined, { sensitivity: 'accent' }) !== 0)))
 }
 
 module.exports.add = (outArr, outTop) => {
+    
+    function isTheSame(read, searched) {
+        return (read.localeCompare(searched, undefined, { sensitivity: 'accent' }) === 0)
+    }
+
+    function thereIsNot(arr, top) {
+        return ((arr.findIndex((topic) => isTheSame(top, topic.name)) === -1 ) ? true : false)
+    }
+
+    return thereIsNot(outArr, outTop) ? outArr.concat({name:outTop, subtopics: []}) : outArr
+}
+
+module.exports.addst = (outArr, outTop) => {
     
     function isTheSame(read, searched) {
         return (read.localeCompare(searched, undefined, { sensitivity: 'accent' }) === 0)

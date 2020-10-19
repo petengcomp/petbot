@@ -15,11 +15,21 @@ module.exports = async (message) => {
         }
         newTopics.forEach((newTopic) => {
             topics = add(topics, newTopic)
+            
         })
+
         const stringifiedUpdatedTopics = JSON.stringify(topics)
         await guild.update({ topics: stringifiedUpdatedTopics })
 
         if (guild.meeting) {
+            let aux = []
+            topics.map(topic => {
+                aux.push(topic.name)
+                topic.subtopics.map(subtopic => {
+                    aux.push(` \u00A0\u00A0\u00A0\u00A0 ${subtopic}`)
+                })
+            })
+            topics = aux
             topics = goTo(topics, guild.done_topics)
             
             const pt = await message.channel.messages.fetch(guild.topics_message_id)
@@ -27,10 +37,10 @@ module.exports = async (message) => {
                 .setTitle(pt.embeds[0].title)
                 .setColor(pt.embeds[0].color.toString(16))
                 .setDescription(pt.embeds[0].description)
-                .addFields({ name: '\u200b', value: topics })
+                .addFields({ name: '\u200b', value: topics})
             pt.edit(embed)
         } else {
-            message.channel.send(`Nova pauta: ${topics}`)
+            message.channel.send(`Nova pauta: ${topics.map(topic=> {return topic.name})}`)
         }
     } else {
         return message.channel.send('Esse servidor não está no banco. Algo de errado não está certo.')

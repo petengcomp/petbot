@@ -12,10 +12,26 @@ const settings = require("../commands/settings")
 const reminder = require("../commands/reminder")
 const bday = require("../commands/bday")
 const countSentMessages = require("../utils/countMessages")
+const mksubtopic = require("../commands/mksubtopic")
+const rmsubtopic = require("../commands/rmsubtopic")
 
 const Guilds = require('../data/dbObjects')
 
 module.exports = async (client, message) => {
+    //tenta encontrar ou criar o servidor no bd
+    const [guild, created] = await Guilds.findOrCreate({ where: { guild_id: message.guild.id } })
+    // try {
+    //     await Guilds.create({
+    //         guild_id: message.guild.id
+    //     })
+    // }
+    // catch (e) {
+    //     if (e.name === 'SequelizeUniqueConstraintError') {
+    //         return console.log('Voltei 😁')
+    //     }
+    //     return console.log('Algo deu errado 😕 '+ e)
+    // }
+
     countSentMessages(message)
 
     if (message.content.startsWith("!meeting")) {
@@ -28,8 +44,12 @@ module.exports = async (client, message) => {
         back(message)
     } else if (message.content.startsWith("!mktopic")) {
         mktopic(message)
+    } else if (message.content.startsWith("!mksubtopic")) {
+        mksubtopic(message)
     } else if (message.content.startsWith("!rmtopic")) {
         rmtopic(message)
+    } else if (message.content.startsWith("!rmsubtopic")) {
+        rmsubtopic(message)
     } else if (message.content.startsWith("!help")) {
         help(message)
     } else if (message.content.startsWith("!poll")) {

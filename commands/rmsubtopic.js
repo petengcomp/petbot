@@ -1,4 +1,4 @@
-const { remove, goTo } = require("../utils/topicsHandler")
+const { removest, goTo } = require("../utils/topicsHandler")
 const { MessageEmbed } = require("discord.js")
 const Guilds = require('../data/dbObjects')
 
@@ -6,20 +6,40 @@ module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
         if (guild.topics === null || guild.topics == '[]') {
-            return message.channel.send('Não há nenhum tópico para ser removido')
+            return message.channel.send('Não há nenhum tópico para subtópicos serem removidos')
         } else {
-            let topicsToRemove = message.content.slice(1).split(',')
-            topicsToRemove[0] = topicsToRemove[0].slice(8)
-            topicsToRemove = topicsToRemove.map((topicToRemove) => topicToRemove.trim())
+            let subTopicsToRemove = message.content.slice(1).split(';')
+            subTopicsToRemove[0] = subTopicsToRemove[0].slice(11)
+
             let oldTopics = JSON.parse(guild.topics)
 
-            if (topicsToRemove[0] == '*') {
-                oldTopics = []
-            } else {
-                topicsToRemove.forEach((topicToRemove) => {
-                    oldTopics = remove(oldTopics, topicToRemove)
-                })
+            for(let i = 0; i< subTopicsToRemove.length; i++){
+                let subTopic = subTopicsToRemove[i].split(',')
+                subTopic = subTopic.map(st=> st.trim())
+                if(subTopic[0] === '*'){
+                    oldTopics.forEach(topic=>{
+                        topic.subtopics = []
+                    })
+                    break
+                }else{
+                    let index = oldTopics.findIndex(topic => {
+                        return topic.name === subTopic[0]
+                    })
+                    if(index === -1 ){
+                        message.channel.send(`Não existe tópico na pauta com o nome ${subTopic[0]}.`)
+                    }else{
+                        for(let j = 1; j< subTopic.length; j++){
+                            if(subTopic[j] === '*'){
+                                oldTopics[index].subtopics = []
+                                break
+                            }
+                            oldTopics[index].subtopics = removest(oldTopics[index].subtopics, subTopic[j])
+                        }
+                    }
+                }
             }
+
+
             const stringifiedUpdatedTopics = JSON.stringify(oldTopics)
             await guild.update({ topics: stringifiedUpdatedTopics })
 

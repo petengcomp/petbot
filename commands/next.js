@@ -6,7 +6,14 @@ module.exports = async (message) => {
     const guild = await Guilds.findOne({ where: { guild_id: message.guild.id } })
     if (guild) {
         if (guild.meeting) {
-            let topics = JSON.parse(guild.topics)
+            let oldTopics = JSON.parse(guild.topics)
+            let topics = []
+            oldTopics.map(topic => {
+                topics.push(topic.name)
+                topic.subtopics.map(subtopic => {
+                    topics.push(` \u00A0\u00A0\u00A0\u00A0 ${subtopic}`)
+                })
+            })
             if (guild.done_topics + 1 >= topics.length) {
                 message.channel.send("Não há mais tópicos!")
             } else {
