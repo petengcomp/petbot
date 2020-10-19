@@ -37,9 +37,12 @@ Não utilize este código como referência para o desenvolvimento de um bot para
 > 👉🏼 **Dica:** Após a revisão da ata, peça para que a escreveu apenas copiar e colar os encaminhamentos no comando, colocando ponto-e-vírgula no final de cada ponto.
 
 ```!mktopic <topico 1>, <topico 2>, ...``` - Adiciona os tópicos na pauta. Todos os pontos são substituidos quando esse comando é usado. 
+
 ```!mksubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>,...``` - Adiciona os subtópicos  no tópico especificado da pauta (case sensitive). 
+
 ```!rmtopic <topico 1>, <topico 2>, ...``` - Remove os tópicos citados da pauta.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` - Remove todos os pontos, esvaziando a pauta. 
+
 ```!rmsubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>, ...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>, ...``` - Remove os subtópicos no tópico especificado da pauta (case insensitive).
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmsubtopic <topico 1>, *; <topico 2>, * ``` - Remove todos subtópicos de determinado tópico. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` Remove todos os subtópicos, deixando os tópicos vazios.
