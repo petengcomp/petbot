@@ -36,9 +36,11 @@ Não utilize este código como referência para o desenvolvimento de um bot para
 
 > 👉🏼 **Dica:** Após a revisão da ata, peça para que a escreveu apenas copiar e colar os encaminhamentos no comando, colocando ponto-e-vírgula no final de cada ponto.
 
-```!mktopic <topico 1>, <topico 2>, ...``` - Adiciona os tópicos na pauta. Todos os pontos são substituidos quando esse comando é usado. Portanto, para adicionar um ponto novo apenas, copie a pauta antiga inteira, a separe por vírgulas e adicione o novo onde quiser.  
+```!mktopic <topico 1>, <topico 2>, ...``` - Adiciona os tópicos na pauta. Todos os pontos são substituidos quando esse comando é usado. 
+```!mksubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>,...``` - Adiciona os subtópicos  no tópico especificado da pauta (case sensitive). 
 ```!rmtopic <topico 1>, <topico 2>, ...``` - Remove os tópicos citados da pauta.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` - Remove todos os pontos, esvaziando a pauta.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```!rmtopic *``` - Remove todos os pontos, esvaziando a pauta. 
+```!rmsubtopic <topico 1>, <subtopico 1.1>, <subtopico 1.2>, ...; <topico 2>, <subtopico 2.1>, <subtopico 2.2>, ...``` - Remove os subtópicos no tópico especificado da pauta (case insensitive). Digite !rmsubtopic <topico 1>, *; <topico 2>, * para remover todos subtópicos de determinado tópico. Digite !rmtopic * para remover todos
 
 ## :zap: Uso do código
 **ATENÇÃO:** Este projeto não pode ser executado localmente, por enquanto. Há variáveis de ambiente no arquivo .env necessárias para seu funcionamento correto e que não devem ser adicionadas ao git. Com a formalização do ambiente de execução do bot e criação de contas adequadas, elas ficarão disponíveis.
