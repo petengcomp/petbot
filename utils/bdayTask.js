@@ -15,8 +15,6 @@ module.exports = function bdayTask(client) {
 
                 if (today.isSame(bday, 'day')) {
                     anyChannel.send(`Feliz aniversário <@${person}>!!! ${moment().diff(bday, 'years')} aninhos, né? Tudo de bom 😋`)
-                } else {
-                    console.log('Hoje não é aniversário de ninguém.')
                 }
             })
         } else {

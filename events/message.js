@@ -20,17 +20,6 @@ const Guilds = require('../data/dbObjects')
 module.exports = async (client, message) => {
     //tenta encontrar ou criar o servidor no bd
     const [guild, created] = await Guilds.findOrCreate({ where: { guild_id: message.guild.id } })
-    // try {
-    //     await Guilds.create({
-    //         guild_id: message.guild.id
-    //     })
-    // }
-    // catch (e) {
-    //     if (e.name === 'SequelizeUniqueConstraintError') {
-    //         return console.log('Voltei 😁')
-    //     }
-    //     return console.log('Algo deu errado 😕 '+ e)
-    // }
 
     countSentMessages(message)
 
