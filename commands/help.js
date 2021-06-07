@@ -1,7 +1,6 @@
 module.exports = async (message) => {
     await message.channel.send("Oie! Eu sou o Pet Bot 3.0 😎")
-    await message.channel.send(
-        "**Para saber mais sobre os comandos:**\n"+
+    await message.channel.send("**Para saber mais sobre os comandos:**\n"+
         "`!help` - Ajuda sobre os comandos.\n\n" +
         "**Comandos para começar reunião:**\n"+
         "`!meeting` - Inicia a reunião.\n" +
